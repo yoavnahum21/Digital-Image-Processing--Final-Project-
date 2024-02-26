@@ -1,8 +1,9 @@
 import Vid_Read
 import comm_platform
 
+
 def main():
-    while(True):
+    while True:
         pass
     
 

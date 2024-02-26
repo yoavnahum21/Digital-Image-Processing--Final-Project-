@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683e3023-4b1e-4821-af93-665d465ada35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/comm_platform.py" afterDir="false" />
+    <list default="true" id="683e3023-4b1e-4821-af93-665d465ada35" name="Changes" comment="Unfinished skeleton code">
+      <change afterPath="$PROJECT_DIR$/Hand_Detection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mapping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comm_platform.py" beforeDir="false" afterPath="$PROJECT_DIR$/comm_platform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,11 +74,28 @@
       <option name="presentableId" value="Default" />
       <updated>1707819433969</updated>
       <workItem from="1707819435073" duration="1484000" />
-      <workItem from="1707918240053" duration="910000" />
+      <workItem from="1707918240053" duration="1249000" />
+      <workItem from="1707986491717" duration="1658000" />
+      <workItem from="1708194494592" duration="1225000" />
+      <workItem from="1708250997177" duration="265000" />
+      <workItem from="1708878653175" duration="1298000" />
     </task>
+    <task id="LOCAL-00001" summary="Unfinished skeleton code">
+      <option name="closed" value="true" />
+      <created>1707919503644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1707919503644</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Unfinished skeleton code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unfinished skeleton code" />
   </component>
 </project>
