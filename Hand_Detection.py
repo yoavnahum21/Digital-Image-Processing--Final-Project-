@@ -1,1 +1,1 @@
-# Detect your hands movements
+# Detect your hands movement
