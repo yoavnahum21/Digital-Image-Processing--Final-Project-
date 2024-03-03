@@ -1,5 +1,5 @@
 import serial
-
+#communication
 
 def init_port():
     port = serial.Serial(

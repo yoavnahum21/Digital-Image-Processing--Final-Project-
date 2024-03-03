@@ -2,7 +2,7 @@ from Vid_Read import Video_Read
 import comm_platform
 import cv2
 
-
+#main func
 def main():
     camera_hands = Video_Read(0)
     port = comm_platform.init_port()
