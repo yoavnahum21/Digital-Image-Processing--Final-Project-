@@ -10,14 +10,16 @@ class Video_Read:
     def Read_video_from_live_cam(self) -> np.array: # יש מצב מחזיר משתנה אחר של cv2
 
         rval, frame = self.vc.read()
+        if not rval:
+            exit(1)
         return frame
 
-        # self.vc.release()
-        # cv2.destroyWindow("Digital Image Processing")
+    def Release_video(self) -> None:
+        self.vc.release()
+        cv2.destroyWindow("Digital Image Processing")
 
-
-def Current_Processed_frame() -> np.array: # יש מצב מחזיר משתנה אחר של cv2
-    pass
+    def Current_Processed_frame() -> np.array: # יש מצב מחזיר משתנה אחר של cv2
+        pass
 
 
 # yoyo
