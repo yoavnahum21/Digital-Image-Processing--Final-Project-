@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" project-jdk-name="C:\Users\97254\anaconda3" project-jdk-type="Python SDK" />
+  <component name="Black">
+    <option name="sdkName" value="dip_project" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="dip_project" project-jdk-type="Python SDK" />
 </project>
