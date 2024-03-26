@@ -27,39 +27,48 @@ def main():
     pass
 
 
-def set_background(img):
+# Sets background and title
+def set_background_title(img, title_str: str):
     screen.blit(img, (0, 0))
     screen.blit(img, (751, 0))
     screen.blit(img, (0, 751))
     screen.blit(img, (751, 751))
-    title = get_font(150).render("Hands-ON", True, "#1e0b7d")
+    title = get_font(150).render(title_str, True, "#1e0b7d")
     title_rect = title.get_rect(center=(840, 100))
     screen.blit(title, title_rect)
 
 
+# Loads the font with given size
 def get_font(size):  # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/Fonts/VIDEOPHREAK.ttf", size)
 
 
+# Get player max reverse, zero and max throttle hand positions
 def calibrate():
     print("CALIBRATION NOT IMPLEMENTED YET")
 
 
+# The main game loop where the game itself happenes
 def play():
     print('PLAY NOT IMPLEMENTED YET')
 
 
+# Sets the current track
 def detect_map():
     print('DETECT MAP NOT IMPLEMENTED YET')
 
 
+# Shows a leader board from the game
 def show_leader_board():
     print('LEADER BOARD NOT IMPLEMENTED YET')
 
+
+# The main menu of the game. while loop redraws each frame
 def main_menu() -> None:
     while True:
-        set_background(background)
-        get_mouse_pos = pygame.mouse.get_pos()
+        set_background_title(background, "Hands-ON")
+        get_mouse_pos = pygame.mouse.get_pos()  # get mouse position on screen
+
         # Create buttons
         calib_button = Button(pos=(840, 300), text_input='Calibration', font=get_font(50), base_color="#1e0b7d",
                               hovering_color='#ab0333')
@@ -72,10 +81,12 @@ def main_menu() -> None:
         quit_button = Button(pos=(840, 700), text_input='Quit', font=get_font(50), base_color="#1e0b7d",
                              hovering_color='#ab0333')
 
+        # Check mouse is on button and draw button on screen accordingly
         for button in [calib_button, detect_button, play_button, lead_button, quit_button]:
             button.changeColor(get_mouse_pos)
             button.update(screen)
 
+        # Event handler for buttons clicked
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -93,7 +104,7 @@ def main_menu() -> None:
                     pygame.quit()
                     exit()
 
-        pygame.display.update()
+        pygame.display.update()  # update the screen with changes in this frame
 
 
 if __name__ == '__main__':
