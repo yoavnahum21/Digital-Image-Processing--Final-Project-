@@ -38,6 +38,11 @@
         <option value="Nikolai Krokhmal &lt;kroniko64@gmail.com&gt;" />
       </list>
     </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
@@ -136,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711215008479</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added git ignore with some files">
+      <option name="closed" value="true" />
+      <created>1712143638228</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712143638228</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,9 +181,10 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Unfinished skeleton code" />
-    <MESSAGE value="working car!" />
     <MESSAGE value="Build program skeleton.&#10;Created main menu and buttons, with button class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Build program skeleton.&#10;Created main menu and buttons, with button class" />
+    <MESSAGE value="working car!" />
+    <MESSAGE value="added git ignore with some files" />
+    <option name="LAST_COMMIT_MESSAGE" value="added git ignore with some files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DIP_Final_Project$main.coverage" NAME="main Coverage Results" MODIFIED="1709481242061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
