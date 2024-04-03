@@ -12,35 +12,24 @@ clock = pygame.time.Clock()
 background = pygame.image.load('Assets/Graphics/back_ground.jpg')
 
 
-# main func
-
-def main():
-    # camera_hands = Video_Read(0)
-    # port = comm_platform.init_port()
-    # comm_platform.Set_package_and_transmit('r', port)
-    # while True:
-    #     signal = input()
-    #     hands_frame = camera_hands.Read_video_from_live_cam()
-    #     cv2.imshow("Digital Image Processing", hands_frame)
-    #     cv2.waitKey(20)
-    #     comm_platform.Set_package_and_transmit(signal, port)
-    pass
+# Loads the font with given size
+def get_font(size):  # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("assets/Fonts/VIDEOPHREAK.ttf", size)
 
 
 # Sets background and title
-def set_background_title(img, title_str: str):
+def set_background_title(img):
     screen.blit(img, (0, 0))
     screen.blit(img, (751, 0))
     screen.blit(img, (0, 751))
     screen.blit(img, (751, 751))
-    title = get_font(150).render(title_str, True, "#1e0b7d")
-    title_rect = title.get_rect(center=(840, 100))
-    screen.blit(title, title_rect)
 
 
-# Loads the font with given size
-def get_font(size):  # Returns Press-Start-2P in the desired size
-    return pygame.font.Font("assets/Fonts/VIDEOPHREAK.ttf", size)
+# make a text box in position
+def make_text_box(string: str, size: int, position: tuple):
+    text = get_font(size).render(string, True, "#1e0b7d")
+    tex_rect = text.get_rect(center=position)
+    screen.blit(text, tex_rect)
 
 
 # Get player max reverse, zero and max throttle hand positions
@@ -49,8 +38,45 @@ def calibrate():
 
 
 # The main game loop where the game itself happenes
-def play():
-    print('PLAY NOT IMPLEMENTED YET')
+def play() -> None:
+    # Set up phase written in pseudocode
+    ''' 1. prompt player to put car in starting position
+        2. ask player to press a key when done
+        3. once done - check if car at good position
+        4. if car at good position start countdown
+        5. play!
+    '''
+    start_cond = False
+    while not start_cond:
+        set_background_title(background)
+        make_text_box("Place car at starting position and press SPACE!", 50, (840,100))
+        make_text_box("Press ESC to exit to main menu anytime",30, (840,150))
+
+        # event handler for setup phase
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                main_menu()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                print("SPACE RANGERS")
+                # TODO: 1.get car position
+                # 2. get starting position
+                # if starting position good set start_cond to True
+                # else write starting position bad
+            pygame.display.update()
+
+
+    # game phase
+    ''' 0.1 build UI
+        1. start timer
+        2. get player input from hand camera and send to car
+        3. get car location
+        4. check for lap end (if true reset timer and save best lap)
+        5. check for track limits
+        6. if ESC pressed return to main menu
+    '''
 
 
 # Sets the current track
@@ -66,7 +92,8 @@ def show_leader_board():
 # The main menu of the game. while loop redraws each frame
 def main_menu() -> None:
     while True:
-        set_background_title(background, "Hands-ON")
+        set_background_title(background)
+        make_text_box("Hands-ON", 150, (840, 100))
         get_mouse_pos = pygame.mouse.get_pos()  # get mouse position on screen
 
         # Create buttons

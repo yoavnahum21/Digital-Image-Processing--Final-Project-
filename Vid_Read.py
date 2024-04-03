@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 
-
 class Video_Read:
     def __init__(self, device_num):
         cv2.namedWindow("Digital image processing")
@@ -20,8 +19,5 @@ class Video_Read:
 
     def Current_Processed_frame() -> np.array: # יש מצב מחזיר משתנה אחר של cv2
         pass
-
-
-# yoyo
 
 
