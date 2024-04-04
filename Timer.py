@@ -30,12 +30,3 @@ class Timer:
 
     def get_timer(self):
         return round(time.perf_counter() - self.start_time, 3)
-
-
-if __name__ == '__main__':
-    timer = Timer()
-    timer.start()
-    time.sleep(2)
-    print(timer.get_timer())
-    timer.stop()
-
