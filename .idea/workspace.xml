@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="683e3023-4b1e-4821-af93-665d465ada35" name="Changes" comment="added a timer class for use in main">
-      <change afterPath="$PROJECT_DIR$/nikos_freecode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vid_Read.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vid_Read.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hand_Detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hand_Detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Timer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
