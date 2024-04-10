@@ -40,12 +40,12 @@ def make_text_box(string: str, size: int, position: tuple):
 # Get player max reverse, zero and max throttle hand positions
 def calibrate():
     # TODO: build this function
-    player = Player(#TODO: fill req)
+    # player = Player(# TODO: fill req,a,
+    pass
 
 
 # The main game loop where the game itself happens
 def play() -> None:
-
     # check if there is a player set
     if player is None:
         set_background(background)
@@ -61,7 +61,7 @@ def play() -> None:
     while not start_cond:
         set_background(background)
         make_text_box("Place car at starting position and press SPACE!", 50, (840, 100))
-        make_text_box("Press ESC to exit to main menu anytime",30, (840, 150))
+        make_text_box("Press ESC to exit to main menu anytime", 30, (840, 150))
 
         # event handler for setup phase
         for event in pygame.event.get():
@@ -106,16 +106,16 @@ def play() -> None:
         # TODO: get player input and send to car
         # TODO: get car location
         # TODO: check track limits
-        if track_limits == True:
-            penalty += 0.01
+        # if track_limits == True:
+        #     penalty += 0.01
         # TODO: check if lap ended
-        if lap_end == True:
-            curr_time = timer.get_timer()
-            if curr_time + penalty < best_lap:
-                best_lap = curr_time
-                timer.stop()
-                timer.start()
-                penalty = 0
+        # if lap_end == True:
+        #     curr_time = timer.get_timer()
+        #     if curr_time + penalty < best_lap:
+        #         best_lap = curr_time
+        #         timer.stop()
+        #         timer.start()
+        #         penalty = 0
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -133,7 +133,7 @@ def detect_map():
 
 # Shows a leader board from the game
 def show_leader_board():
-
+    pass
 
 
 # The main menu of the game. while loop redraws each frame
@@ -144,7 +144,7 @@ def main_menu() -> None:
         get_mouse_pos = pygame.mouse.get_pos()  # get mouse position on screen
 
         # Create buttons
-        calib_button = Button(pos=(840, 300), text_input='Calibration', font=get_font(50), base_color="#1e0b7d",
+        calib_button = Button(pos=(840, 300), text_input='Set Player', font=get_font(50), base_color="#1e0b7d",
                               hovering_color='#ab0333')
         detect_button = Button(pos=(840, 400), text_input='Map Detection', font=get_font(50), base_color="#1e0b7d",
                                hovering_color='#ab0333')

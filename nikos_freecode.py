@@ -13,7 +13,7 @@ if __name__ == '__main__':
     while True:
         ret, frame = ext_camera.read()
         frame_time = timer.get_timer()
-        filename = f"{dst_dir}/{frame_time}.png"
+        filename = f"{dst_dir}/{frame_time}_top.png"
         if write:
             cv2.imwrite(filename, frame)
         cv2.imshow("feed", frame)
