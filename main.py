@@ -13,7 +13,8 @@ screen = pygame.display.set_mode((1600, 900))
 pygame.display.set_caption('Hands-ON')
 clock = pygame.time.Clock()
 background = pygame.image.load('Assets/Graphics/back_ground.jpg')
-leaderboard = {}
+leaderboard = {"niko1": 10000, "niko2": 9000, "niko3": 8000, "niko4": 7000, "niko5": 6000, "niko6": 5000, "niko7": 4000,
+               "niko8": 3000, "niko9": 900, "niko10": 888, "niko11": 777}
 player = None
 
 
@@ -55,7 +56,7 @@ def play() -> None:
     # Set up phase
     start_cond = False
     timer = Timer()
-    best_lap = 9999999
+    best_lap = 10000
     penalty = 0
 
     while not start_cond:
@@ -129,11 +130,39 @@ def play() -> None:
 # Sets the current track
 def detect_map():
     print('DETECT MAP NOT IMPLEMENTED YET')
+    leaderboard = {}
 
 
 # Shows a leader board from the game
-def show_leader_board():
-    pass
+def show_leader_board(lead_board: dict) -> None:
+    set_background(background)
+    make_text_box("Leader Board", 100, (840, 100))
+    sorted_players = sorted(lead_board.items(), key=lambda item: item[1], reverse=True)
+
+    # Loop over elements using the sorted players
+    for p in range(len(sorted_players)):
+        if p + 1 > 10:
+            break
+        else:
+            make_text_box(f"P{p + 1}.", 30, (180, 180 + 50 * p))
+            make_text_box(f"{sorted_players[p][0]}", 30, (300, 180 + 50 * p))
+            make_text_box(f"{sorted_players[p][1]}", 30, (1400, 180 + 50 * p))
+
+    back_button = Button(pos=(1300, 800), text_input='Menu', font=get_font(50), base_color="#1e0b7d",
+                         hovering_color='#ab0333')
+    while True:
+        get_mouse_pos = pygame.mouse.get_pos()
+        back_button.changeColor(get_mouse_pos)
+        back_button.update(screen)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_button.checkForInput(get_mouse_pos):
+                    main_menu()
+        pygame.display.update()  # update the screen with changes in this frame
 
 
 # The main menu of the game. while loop redraws each frame
@@ -173,7 +202,7 @@ def main_menu() -> None:
                 if play_button.checkForInput(get_mouse_pos):
                     play()
                 if lead_button.checkForInput(get_mouse_pos):
-                    show_leader_board()
+                    show_leader_board(leaderboard)
                 if quit_button.checkForInput(get_mouse_pos):
                     pygame.quit()
                     exit()
