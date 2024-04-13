@@ -40,9 +40,29 @@ def make_text_box(string: str, size: int, position: tuple):
 
 # Get player max reverse, zero and max throttle hand positions
 def calibrate():
-    # TODO: build this function
-    # player = Player(# TODO: fill req,a,
-    pass
+    # We ask user to enter their name
+    global player
+    name = ''
+    name_phase = True
+    while name_phase:
+        set_background(background)
+        make_text_box(f"Enter Name: {name}", 100, (840, 300))
+
+        # Event Handler for this loop
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
+                    name = name[: -1]
+                elif event.key == pygame.K_RETURN:
+                    name_phase = False
+                else:
+                    name += event.unicode
+        pygame.display.update()  # update the screen with changes in this frame
+    player = Player(name)
+    # TODO: detect hand positions for player
 
 
 # The main game loop where the game itself happens
@@ -129,7 +149,7 @@ def play() -> None:
 
 # Sets the current track
 def detect_map():
-    print('DETECT MAP NOT IMPLEMENTED YET')
+    global leaderboard
     leaderboard = {}
 
 
