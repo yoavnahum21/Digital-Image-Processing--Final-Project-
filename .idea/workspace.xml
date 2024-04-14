@@ -192,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713013831119</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="made a feature where you type your player name and create a player object in the calibration function. now only left to detect hand positions">
+      <option name="closed" value="true" />
+      <created>1713015587005</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713015587005</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,22 +236,23 @@
     <MESSAGE value="added git ignore with some files" />
     <MESSAGE value="working car!" />
     <MESSAGE value="remade the background function to only set background&#10;made a new &quot;make textbox&quot; function&#10;started set up phase of the play function" />
-    <MESSAGE value="added a timer class for use in main" />
     <MESSAGE value="implemented leaderboard function" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented leaderboard function" />
+    <MESSAGE value="added a timer class for use in main" />
+    <MESSAGE value="made a feature where you type your player name and create a player object in the calibration function. now only left to detect hand positions" />
+    <option name="LAST_COMMIT_MESSAGE" value="made a feature where you type your player name and create a player object in the calibration function. now only left to detect hand positions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Mapping.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>174</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>157</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/Mapping.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

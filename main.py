@@ -13,8 +13,7 @@ screen = pygame.display.set_mode((1600, 900))
 pygame.display.set_caption('Hands-ON')
 clock = pygame.time.Clock()
 background = pygame.image.load('Assets/Graphics/back_ground.jpg')
-leaderboard = {"niko1": 10000, "niko2": 9000, "niko3": 8000, "niko4": 7000, "niko5": 6000, "niko6": 5000, "niko7": 4000,
-               "niko8": 3000, "niko9": 900, "niko10": 888, "niko11": 777}
+leaderboard = {}
 player = None
 
 
@@ -56,6 +55,8 @@ def calibrate():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     name = name[: -1]
+                elif event.key == pygame.K_ESCAPE:
+                    main_menu()
                 elif event.key == pygame.K_RETURN:
                     name_phase = False
                 else:
@@ -70,8 +71,22 @@ def play() -> None:
     # check if there is a player set
     if player is None:
         set_background(background)
-        make_text_box("Player not set, returning to main menu!", 50, (840, 450))
-        main_menu()
+        make_text_box("Player not set, returning to main menu!", 50, (840, 300))
+        back_button = Button(pos=(1300, 800), text_input='Menu', font=get_font(50), base_color="#1e0b7d",
+                             hovering_color='#ab0333')
+        while True:
+            get_mouse_pos = pygame.mouse.get_pos()
+            back_button.changeColor(get_mouse_pos)
+            back_button.update(screen)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if back_button.checkForInput(get_mouse_pos):
+                        main_menu()
+            pygame.display.update()  # update the screen with changes in this frame
 
     # Set up phase
     start_cond = False
@@ -151,6 +166,7 @@ def play() -> None:
 def detect_map():
     global leaderboard
     leaderboard = {}
+    main_menu()
 
 
 # Shows a leader board from the game
