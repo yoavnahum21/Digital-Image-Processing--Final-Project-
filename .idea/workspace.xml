@@ -7,6 +7,8 @@
     <list default="true" id="683e3023-4b1e-4821-af93-665d465ada35" name="Changes" comment="working car!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hand_Detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hand_Detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vid_Read.py" beforeDir="false" afterPath="$PROJECT_DIR$/Vid_Read.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +81,11 @@
       <workItem from="1708956296188" duration="416000" />
       <workItem from="1709471132304" duration="1549000" />
       <workItem from="1709473960041" duration="4918000" />
+      <workItem from="1709632261577" duration="600000" />
+      <workItem from="1709914038470" duration="29000" />
+      <workItem from="1709914078156" duration="2345000" />
+      <workItem from="1711789352657" duration="20051000" />
+      <workItem from="1711964486734" duration="322000" />
     </task>
     <task id="LOCAL-00001" summary="Unfinished skeleton code">
       <option name="closed" value="true" />
@@ -110,12 +117,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Unfinished skeleton code" />
     <MESSAGE value="working car!" />
     <option name="LAST_COMMIT_MESSAGE" value="working car!" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DIP_Final_Project$main.coverage" NAME="main Coverage Results" MODIFIED="1709481242061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
