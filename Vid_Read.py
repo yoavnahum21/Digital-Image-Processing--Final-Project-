@@ -18,7 +18,7 @@ class Video_Read:
         self.vc.release()
         cv2.destroyWindow("Digital Image Processing")
 
-    def Current_Processed_frame() -> np.array: # יש מצב מחזיר משתנה אחר של cv2
+    def Current_Processed_frame(self) -> np.array: # יש מצב מחזיר משתנה אחר של cv2
         pass
 
 
