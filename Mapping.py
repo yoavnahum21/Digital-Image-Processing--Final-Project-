@@ -2,7 +2,6 @@
 1.
 
 """
-import math
 import cv2
 import numpy as np
 
@@ -22,9 +21,9 @@ class Track:
             key = cv2.waitKey(1) & 0xFF
             if key == ord('r'):
                 break
+        self.origin_img = frame
         self.track_cam.release()
         cv2.destroyAllWindows()
-        self.origin_img = frame
 
     def get_bev_track(self):
         ref_img = cv2.cvtColor(self.origin_img, cv2.COLOR_BGR2LAB)
@@ -67,5 +66,3 @@ def get_corner_points(img):
 
 if __name__ == "__main__":
     pass
-
-

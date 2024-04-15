@@ -20,6 +20,7 @@ class RaceCar:
     # set self.car_img to be an image taken from camera
     def take_img(self):
         self.car_img = self.car_cam.read()
+        self.car_cam.release()
 
     # sets self.location to be car coordinates in (y,x)
     def get_car_pos(self, persp_mat):
@@ -40,13 +41,12 @@ class RaceCar:
         rot_mat = cv2.getRotationMatrix2D((350, 350), ang, 1.0)
         return cv2.warpAffine(window, rot_mat, (700, 700), cv2.INTER_NEAREST, cv2.BORDER_CONSTANT)
 
-
-
     # sets self.orientation to the direction car is facing
     def get_orientation(self, persp_mat):
         pass
         # TODO: use get_window to get car image and detect car orientation. then use persp_mat to get
         #  orientation in stretched image. return orientation as a 2D vector
+
 
 def get_window(track_img, car_pos, size):
     x = car_pos[0]
@@ -55,9 +55,9 @@ def get_window(track_img, car_pos, size):
     return window
 
 
-
 if __name__ == '__main__':
-        # for idx in range(len(drive_path)):
+    pass
+    # for idx in range(len(drive_path)):
     #     live_screen = get_window(bev_track, drive_path[idx], 50)
     #     live_screen = cv2.resize(live_screen, (700, 700), interpolation=cv2.INTER_AREA)
     #     if idx-1 == -1:
@@ -74,4 +74,3 @@ if __name__ == '__main__':
     #     if key_pressed == ord('q'):
     #         break
     # cv2.destroyAllWindows()
-

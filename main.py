@@ -2,10 +2,12 @@
 # import comm_platform
 import cv2
 import pygame
+import time
 from button import Button
 from Timer import Timer
-import time
+from RaceCar import RaceCar
 from Hand_Detection import Player
+from Mapping import Track
 
 # start game and load resources
 pygame.init()
@@ -14,9 +16,11 @@ pygame.display.set_caption('Hands-ON')
 clock = pygame.time.Clock()
 background = pygame.image.load('Assets/Graphics/back_ground.jpg')
 leaderboard = {}
+# hand_cam = cv2.VideoCapture(0)
+track_cam = cv2.VideoCapture(1)
 player = None
-hand_cam = cv2.VideoCapture(1)
-track_cam = cv2.VideoCapture(2)
+car = RaceCar(track_cam)
+track = Track(track_cam)
 
 
 # Loads the font with given size
@@ -110,10 +114,9 @@ def play() -> None:
                 main_menu()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 start_cond = True
-                # TODO: 1.get car position
-                # TODO: 2. get starting position
-                # TODO: if starting position good set start_cond to True
-                # TODO: else write starting position bad
+                car.take_img()
+                track.start_point = car.get_car_pos(track.persp_mat)
+                # TODO: check if starting position good
             pygame.display.update()
 
     # finished set up not countdown to start game
@@ -136,13 +139,19 @@ def play() -> None:
     set_background(background)
     make_text_box("GO!", 300, (840, 450))
     pygame.display.update()
+    time.sleep(0.5)
     timer.start()
 
     # game phase
     while True:
-        # TODO: draw mop
+        set_background(background)
+        # car.take_img()
+        # car.get_car_pos(track.persp_mat)
+        # car_surr = car.get_surrounding(track.bev_track)
+        live_screen = pygame.surfarray.make_surface(track.bev_track)
+        live_screen_rect = live_screen.get_rect(center=(840, 450))
+        screen.blit(live_screen, live_screen_rect)
         # TODO: get player input and send to car
-        # TODO: get car location
         # TODO: check track limits
         # if track_limits == True:
         #     penalty += 0.01
@@ -154,21 +163,50 @@ def play() -> None:
         #         timer.stop()
         #         timer.start()
         #         penalty = 0
+        # make_text_box(str(car.velocity), 50, (100, 800))
+        make_text_box("Lap Time:", 50, (200, 130))
+        make_text_box(str(timer.get_timer()), 50, (200, 180))
+        make_text_box("Speed:", 50, (200, 720))
+        make_text_box(str(timer.get_timer()), 50, (200, 770))
+        pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                # TODO: make a player object
                 leaderboard[player.name] = best_lap
                 main_menu()
 
 
 # Sets the current track
-def detect_map():
+def detect_map(new_track: Track):
     global leaderboard
     leaderboard = {}
-    main_menu()
+    set_background(background)
+    make_text_box("When the track and candles are visible", 40, (840, 50))
+    make_text_box("press R to take a picture", 40, (840, 100))
+    pygame.display.update()  # update the screen with changes in this frame
+    # new_track.get_track_img()
+    new_track.origin_img = cv2.imread("camera_test/31.835_top.png")
+    new_track.get_bev_track()
+    # new_track.get_starting_pos()
+    cv2.imshow("BEV Track", new_track.bev_track)
+    back_button = Button(pos=(1300, 800), text_input='Menu', font=get_font(50), base_color="#1e0b7d",
+                         hovering_color='#ab0333')
+
+    while True:
+        get_mouse_pos = pygame.mouse.get_pos()
+        back_button.changeColor(get_mouse_pos)
+        back_button.update(screen)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                cv2.destroyAllWindows()
+                pygame.quit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_button.checkForInput(get_mouse_pos):
+                    cv2.destroyAllWindows()
+                    main_menu()
+        pygame.display.update()  # update the screen with changes in this frame
 
 
 # Shows a leader board from the game
@@ -236,7 +274,7 @@ def main_menu() -> None:
                 if calib_button.checkForInput(get_mouse_pos):
                     calibrate()
                 if detect_button.checkForInput(get_mouse_pos):
-                    detect_map()
+                    detect_map(track)
                 if play_button.checkForInput(get_mouse_pos):
                     play()
                 if lead_button.checkForInput(get_mouse_pos):
