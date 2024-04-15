@@ -15,6 +15,8 @@ clock = pygame.time.Clock()
 background = pygame.image.load('Assets/Graphics/back_ground.jpg')
 leaderboard = {}
 player = None
+hand_cam = cv2.VideoCapture(1)
+track_cam = cv2.VideoCapture(2)
 
 
 # Loads the font with given size
