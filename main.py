@@ -1,4 +1,3 @@
-# from Vid_Read import Video_Read
 # import comm_platform
 import cv2
 import pygame
@@ -115,8 +114,7 @@ def play() -> None:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 start_cond = True
                 car.take_img()
-                track.start_point = car.get_car_pos(track.persp_mat)
-                # TODO: check if starting position good
+                track.start_point = car.get_car_pos(track.persp_mat, True)
             pygame.display.update()
 
     # finished set up not countdown to start game
@@ -145,10 +143,11 @@ def play() -> None:
     # game phase
     while True:
         set_background(background)
-        # car.take_img()
-        # car.get_car_pos(track.persp_mat)
-        # car_surr = car.get_surrounding(track.bev_track)
-        live_screen = pygame.surfarray.make_surface(track.bev_track)
+        car.take_img()
+        car.get_car_pos(track.persp_mat, False)
+        car.get_velocity_n_orientation()
+        car_surr = car.get_surrounding(track.bev_track)
+        live_screen = pygame.surfarray.make_surface(car_surr)
         live_screen_rect = live_screen.get_rect(center=(840, 450))
         screen.blit(live_screen, live_screen_rect)
         # TODO: get player input and send to car
@@ -163,11 +162,10 @@ def play() -> None:
         #         timer.stop()
         #         timer.start()
         #         penalty = 0
-        # make_text_box(str(car.velocity), 50, (100, 800))
         make_text_box("Lap Time:", 50, (200, 130))
         make_text_box(str(timer.get_timer()), 50, (200, 180))
         make_text_box("Speed:", 50, (200, 720))
-        make_text_box(str(timer.get_timer()), 50, (200, 770))
+        make_text_box(str(car.velocity), 50, (200, 770))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -187,7 +185,7 @@ def detect_map(new_track: Track):
     make_text_box("press R to take a picture", 40, (840, 100))
     pygame.display.update()  # update the screen with changes in this frame
     # new_track.get_track_img()
-    new_track.origin_img = cv2.imread("camera_test/31.835_top.png")
+    new_track.origin_img = cv2.imread("camera_test/13.562_real.png")
     new_track.get_bev_track()
     # new_track.get_starting_pos()
     cv2.imshow("BEV Track", new_track.bev_track)
