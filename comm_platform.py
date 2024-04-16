@@ -3,7 +3,7 @@ import serial
 
 def init_port():
     port = serial.Serial(
-        port='COM6',  # Adjust this to match your serial port
+        port='COM5',  # Adjust this to match your serial port
         baudrate=115200,  # Set the baudrate according to your device
         timeout=0.1  # Set timeout as needed
     )
