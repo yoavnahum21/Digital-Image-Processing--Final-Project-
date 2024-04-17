@@ -23,7 +23,7 @@ class Track:
             if key == ord('r'):
                 break
         self.origin_img = frame
-        self.track_cam.release()
+        # self.track_cam.release()
         cv2.destroyAllWindows()
 
     def get_bev_track(self):
@@ -38,7 +38,7 @@ class Track:
         a_thresh = cv2.dilate(a_thresh, kernel=np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]]), iterations=60)
         bev_clean = np.maximum(bev_comb - a_thresh, 0)
         cv2.imshow("bev_clean", bev_clean)
-        cv2.waitKey(0)
+        cv2.waitKey(2)
         # self.get_harris_corners(bev_clean)
         bev_clean = cv2.copyMakeBorder(bev_clean, 50, 50, 50, 50, cv2.BORDER_CONSTANT)
         bev_clean = cv2.dilate(bev_clean, kernel=np.array([[1, 1], [1, 1]]), iterations=20)

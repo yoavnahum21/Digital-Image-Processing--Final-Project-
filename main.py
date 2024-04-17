@@ -1,4 +1,4 @@
-# import comm_platform
+import comm_platform
 import cv2
 import pygame
 import time
@@ -16,12 +16,39 @@ pygame.display.set_caption('Hands-ON')
 clock = pygame.time.Clock()
 background = pygame.image.load('Assets/Graphics/back_ground.jpg')
 leaderboard = {}
-# hand_cam = cv2.VideoCapture(0)
+hand_cam = cv2.VideoCapture(0)
 track_cam = cv2.VideoCapture(1)
-player = None
+player = Player('', hand_cam)
 processor = FrameProcessor()
 car = RaceCar(track_cam)
 track = Track(track_cam)
+port = comm_platform.init_port()
+
+def finish_mode(port):
+    comm_platform.Set_package_and_transmit('d', port)  # go right
+    time.sleep(5)
+    comm_platform.Set_package_and_transmit('r', port)  # go right
+
+    return
+
+def fsm(grad, port):
+    if grad is None:
+        comm_platform.Set_package_and_transmit('r', port)  # stop car
+    elif (grad <= 0.2) and (grad >= -0.2):
+        comm_platform.Set_package_and_transmit('w', port)  # go forward
+    elif (grad < -0.2) and (grad >= -0.5):
+        comm_platform.Set_package_and_transmit('d', port)  # go forward and right
+    elif (grad > 0.2) and (grad <= 0.5):
+        comm_platform.Set_package_and_transmit('y', port)  # go forward and left
+    elif grad > 0.5:
+        comm_platform.Set_package_and_transmit('a', port)  # go right
+    elif grad < -0.5:
+        comm_platform.Set_package_and_transmit('d', port)  # go right
+    else:
+        return
+    cv2.waitKey(50)
+    comm_platform.Set_package_and_transmit('r', port)
+    return
 
 
 # Loads the font with given size
@@ -69,8 +96,10 @@ def calibrate():
                 else:
                     name += event.unicode
         pygame.display.update()  # update the screen with changes in this frame
-    player = Player(name)
-    # TODO: detect hand positions for player
+    player.name = name
+    player.calibration()
+    print("finish")
+    main_menu()
 
 
 # The main game loop where the game itself happens
@@ -101,6 +130,7 @@ def play() -> None:
     best_lap = 10000
     penalty = 0
 
+
     while not start_cond:
         set_background(background)
         make_text_box("Place car at starting position and press SPACE!", 50, (840, 100))
@@ -117,8 +147,8 @@ def play() -> None:
                 car.take_img()
                 start_cond = True
                 scale_x, scale_y = 1.8 / car.car_img.shape[1], 1.8 / car.car_img.shape[0]
-                car.location[1], car.location[0], car.velocity, car.orientation = (
-                    processor.process_single_frame(car.car_img, 30, scale_x, scale_y))
+                car.location[1], car.location[0], car.velocity, car.orientation =\
+                    processor.process_single_frame(car.car_img, 30, scale_x, scale_y)
             pygame.display.update()
 
     # finished set up not countdown to start game
@@ -154,7 +184,8 @@ def play() -> None:
         live_screen = pygame.surfarray.make_surface(car_surr)
         live_screen_rect = live_screen.get_rect(center=(840, 450))
         screen.blit(live_screen, live_screen_rect)
-        # TODO: get player input and send to car
+        slope = player.sift()
+        fsm(slope, port)
         # TODO: check track limits
         # if track_limits == True:
         #     penalty += 0.01
@@ -188,7 +219,8 @@ def detect_map(new_track: Track):
     make_text_box("When the track and candles are visible", 40, (840, 50))
     make_text_box("press R to take a picture", 40, (840, 100))
     pygame.display.update()  # update the screen with changes in this frame
-    new_track.get_track_img()
+    new_track.origin_img = cv2.imread("camera_test/test_img.png")
+    # new_track.get_track_img()
     new_track.get_bev_track()
     # new_track.get_starting_pos()
     cv2.imshow("BEV Track", new_track.bev_track)
@@ -281,6 +313,7 @@ def main_menu() -> None:
                 if lead_button.checkForInput(get_mouse_pos):
                     show_leader_board(leaderboard)
                 if quit_button.checkForInput(get_mouse_pos):
+                    finish_mode(port)
                     pygame.quit()
                     exit()
 

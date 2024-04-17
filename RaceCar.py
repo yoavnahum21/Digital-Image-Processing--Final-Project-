@@ -6,7 +6,7 @@ import numpy as np
 
 class RaceCar:
     def __init__(self, camera):
-        self.location = (0,0)
+        self.location = np.array([0,0])
         self.velocity = None
         self.orientation = None
         self.car_cam = camera
@@ -15,8 +15,9 @@ class RaceCar:
 
     # set self.car_img to be an image taken from camera
     def take_img(self):
-        self.car_img = self.car_cam.read()
-        self.car_cam.release()
+        _, frame = self.car_cam.read()
+        self.car_img = frame
+        #self.car_cam.release()
 
     # sets self.location to be car coordinates in (y,x)
     def get_car_pos(self, persp_mat, first_frame):
