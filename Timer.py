@@ -29,4 +29,4 @@ class Timer:
         self.start_time = None
 
     def get_timer(self):
-        return round(time.perf_counter() - self.start_time, 3)
+        return time.perf_counter() - self.start_time

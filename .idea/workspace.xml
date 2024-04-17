@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="683e3023-4b1e-4821-af93-665d465ada35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/video_car_detection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/big_code_version.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hand_Detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hand_Detection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RaceCar.py" beforeDir="false" afterPath="$PROJECT_DIR$/RaceCar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Timer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nikos_freecode.py" beforeDir="false" afterPath="$PROJECT_DIR$/nikos_freecode.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,28 +71,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Mapping.executor&quot;: &quot;Run&quot;,
-    &quot;Python.RaceCar.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Timer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Vid_Read.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.nikos_freecode.executor&quot;: &quot;Run&quot;,
-    &quot;Python.video.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;niko&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Uni/TimeSkip/Semester G/Image processing/dip_Project/Digital-Image-Processing--Final-Project-&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Hand_Detection.executor": "Run",
+    "Python.Mapping.executor": "Debug",
+    "Python.RaceCar.executor": "Run",
+    "Python.Timer.executor": "Run",
+    "Python.Vid_Read.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.nikos_freecode.executor": "Run",
+    "Python.video.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "niko",
+    "last_opened_file_path": "E:/Uni/TimeSkip/Semester G/Image processing/dip_Project/Digital-Image-Processing--Final-Project-",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -212,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713181717787</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="RaceCar.py - added eitans code for car localization and other methods&#10;Mapping.py - fixed some bugs regarding segmentation&#10;main.py - added more to the play function">
+      <option name="closed" value="true" />
+      <created>1713306599342</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713306599342</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +263,8 @@
     <MESSAGE value="made a feature where you type your player name and create a player object in the calibration function. now only left to detect hand positions" />
     <MESSAGE value="added a timer class for use in main" />
     <MESSAGE value="RaceCar.py - added methods and TODOs for later&#10;Mapping.py - added methods for track recognition and stretching&#10;main.py - added variables to handle cameras" />
-    <option name="LAST_COMMIT_MESSAGE" value="RaceCar.py - added methods and TODOs for later&#10;Mapping.py - added methods for track recognition and stretching&#10;main.py - added variables to handle cameras" />
+    <MESSAGE value="RaceCar.py - added eitans code for car localization and other methods&#10;Mapping.py - fixed some bugs regarding segmentation&#10;main.py - added more to the play function" />
+    <option name="LAST_COMMIT_MESSAGE" value="RaceCar.py - added eitans code for car localization and other methods&#10;Mapping.py - fixed some bugs regarding segmentation&#10;main.py - added more to the play function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -263,11 +275,6 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="top_right" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DIP_Final_Project$main.coverage" NAME="main Coverage Results" MODIFIED="1709481242061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

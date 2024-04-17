@@ -1,9 +1,4 @@
-""" This file is about the race car class. Break down of class attributes and
-methods:
-1.
-
-"""
-
+from big_code_version import FrameProcessor
 import cv2
 import math
 import numpy as np
@@ -11,23 +6,12 @@ import numpy as np
 
 class RaceCar:
     def __init__(self, camera):
-        self.location = None
+        self.location = (0,0)
         self.velocity = None
         self.orientation = None
         self.car_cam = camera
         self.car_pick = None
         self.car_img = None
-
-        # eitans variables
-        self.prev_x = None
-        self.prev_y = None
-        self.lower_white = None
-        self.upper_white = None
-        self.new_x = None
-        self.new_y = None
-        self.found = None
-        self.mask = None
-        self.contours = None
 
     # set self.car_img to be an image taken from camera
     def take_img(self):
@@ -144,20 +128,4 @@ def calculate_speed_and_orientation(prev_x, prev_y, new_x, new_y, scale_x, scale
 
 if __name__ == '__main__':
     pass
-    # for idx in range(len(drive_path)):
-    #     live_screen = get_window(bev_track, drive_path[idx], 50)
-    #     live_screen = cv2.resize(live_screen, (700, 700), interpolation=cv2.INTER_AREA)
-    #     if idx-1 == -1:
-    #         car_orientation = np.array(drive_path[idx+1]) - np.array(drive_path[idx])
-    #     else:
-    #         car_orientation = np.array(drive_path[idx]) - np.array(drive_path[idx-1])
-    #     print(car_orientation)
-    #     ang = 90 + math.degrees(math.atan2(car_orientation[1], car_orientation[0]))
-    #     rot_mat = cv2.getRotationMatrix2D((350,350), ang, 1.0)
-    #     print(rot_mat)
-    #     live_screen = cv2.warpAffine(live_screen, rot_mat, (700, 700), cv2.INTER_NEAREST, cv2.BORDER_CONSTANT)
-    #     cv2.imshow("img", live_screen)
-    #     key_pressed = cv2.waitKey(0) & 0xFF
-    #     if key_pressed == ord('q'):
-    #         break
-    # cv2.destroyAllWindows()
+

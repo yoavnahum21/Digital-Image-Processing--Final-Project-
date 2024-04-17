@@ -4,6 +4,7 @@ import pygame
 import time
 from button import Button
 from Timer import Timer
+from big_code_version import FrameProcessor
 from RaceCar import RaceCar
 from Hand_Detection import Player
 from Mapping import Track
@@ -18,6 +19,7 @@ leaderboard = {}
 # hand_cam = cv2.VideoCapture(0)
 track_cam = cv2.VideoCapture(1)
 player = None
+processor = FrameProcessor()
 car = RaceCar(track_cam)
 track = Track(track_cam)
 
@@ -112,9 +114,11 @@ def play() -> None:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 main_menu()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                start_cond = True
                 car.take_img()
-                track.start_point = car.get_car_pos(track.persp_mat, True)
+                start_cond = True
+                scale_x, scale_y = 1.8 / car.car_img.shape[1], 1.8 / car.car_img.shape[0]
+                car.location[1], car.location[0], car.velocity, car.orientation = (
+                    processor.process_single_frame(car.car_img, 30, scale_x, scale_y))
             pygame.display.update()
 
     # finished set up not countdown to start game
@@ -144,8 +148,8 @@ def play() -> None:
     while True:
         set_background(background)
         car.take_img()
-        car.get_car_pos(track.persp_mat, False)
-        car.get_velocity_n_orientation()
+        car.location[1], car.location[0], car.velocity, car.orientation = (
+            processor.process_single_frame(car.car_img, 30, scale_x, scale_y))
         car_surr = car.get_surrounding(track.bev_track)
         live_screen = pygame.surfarray.make_surface(car_surr)
         live_screen_rect = live_screen.get_rect(center=(840, 450))
@@ -184,8 +188,7 @@ def detect_map(new_track: Track):
     make_text_box("When the track and candles are visible", 40, (840, 50))
     make_text_box("press R to take a picture", 40, (840, 100))
     pygame.display.update()  # update the screen with changes in this frame
-    # new_track.get_track_img()
-    new_track.origin_img = cv2.imread("camera_test/13.562_real.png")
+    new_track.get_track_img()
     new_track.get_bev_track()
     # new_track.get_starting_pos()
     cv2.imshow("BEV Track", new_track.bev_track)
