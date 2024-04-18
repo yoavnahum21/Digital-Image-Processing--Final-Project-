@@ -40,11 +40,12 @@ class RaceCar:
 
     # returns a rotated binary image of car surroundings
     def get_surrounding(self, img):
-        window = get_window(img, self.location, 50)
+        window = get_window(img, self.location, 70)
         window = cv2.resize(window, (700, 700), interpolation=cv2.INTER_AREA)
         # ang = 90 + math.degrees(math.atan2(self.orientation[1], self.orientation[0]))
-        rot_mat = cv2.getRotationMatrix2D((350, 350), self.orientation, 1.0)
-        return cv2.warpAffine(window, rot_mat, (700, 700), cv2.INTER_NEAREST, cv2.BORDER_CONSTANT)
+        # rot_mat = cv2.getRotationMatrix2D((350, 350), self.orientation, 1.0)
+        # return cv2.warpAffine(window, rot_mat, (700, 700), cv2.INTER_NEAREST, cv2.BORDER_CONSTANT)
+        return window
 
     # sets self.orientation to the direction car is facing
     # def get_orientation(self, persp_mat):

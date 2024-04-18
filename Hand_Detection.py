@@ -80,7 +80,7 @@ class Player:
             good_keypoints_x = []
             good_keypoints_y = []
             for m, n in matches:
-                if m.distance < 0.72 * n.distance:
+                if m.distance < 0.71 * n.distance:
                     good_matches.append(m)
                     good_keypoints_x.append(round(keypoints_RT[m.trainIdx].pt[0]))
                     good_keypoints_y.append(round(keypoints_RT[m.trainIdx].pt[1]))
@@ -96,7 +96,7 @@ class Player:
         cv2.waitKey(20)
 
         good_keypoints = list(zip(good_keypoints_y, good_keypoints_x))
-        if len(good_matches) < 11:
+        if len(good_matches) < 9:
             cv2.imshow('Matched Keypoints', hands_frame_RT)
             cv2.waitKey(20)
             return None

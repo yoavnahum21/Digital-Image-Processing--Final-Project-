@@ -27,11 +27,10 @@ class Track:
         cv2.destroyAllWindows()
 
     def get_bev_track(self):
-        _, corner_img = cv2.threshold(self.origin_img[:, :, 2], 200, 255, cv2.THRESH_BINARY)
-        corners = np.float32(np.array(get_corner_points(corner_img)))
+        corners = np.float32([[145, 85], [508, 65], [50, 440], [573, 439]])
         dest_corners = np.float32([[0, 0], [639, 0], [0, 479], [639, 479]])
-        persp_mat = cv2.getPerspectiveTransform(corners, dest_corners)
-        bev_track = cv2.warpPerspective(self.origin_img, persp_mat, (640, 480))
+        self.persp_mat = cv2.getPerspectiveTransform(corners, dest_corners)
+        bev_track = cv2.warpPerspective(self.origin_img, self.persp_mat, (640, 480))
         _, bev_comb = cv2.threshold(bev_track[:, :, 1], 120, 255, cv2.THRESH_BINARY)
         bev_track = cv2.cvtColor(bev_track, cv2.COLOR_BGR2LAB)
         _, a_thresh = cv2.threshold(bev_track[:, :, 1], 160, 255, cv2.THRESH_BINARY)
@@ -40,7 +39,7 @@ class Track:
         cv2.imshow("bev_clean", bev_clean)
         cv2.waitKey(2)
         # self.get_harris_corners(bev_clean)
-        bev_clean = cv2.copyMakeBorder(bev_clean, 50, 50, 50, 50, cv2.BORDER_CONSTANT)
+        bev_clean = cv2.copyMakeBorder(bev_clean, 70, 70, 70, 70, cv2.BORDER_CONSTANT)
         bev_clean = cv2.dilate(bev_clean, kernel=np.array([[1, 1], [1, 1]]), iterations=20)
         self.bev_track = cv2.Canny(bev_clean, 0, 100)
 

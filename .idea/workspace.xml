@@ -9,8 +9,8 @@
       <change beforePath="$PROJECT_DIR$/Hand_Detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hand_Detection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RaceCar.py" beforeDir="false" afterPath="$PROJECT_DIR$/RaceCar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comm_platform.py" beforeDir="false" afterPath="$PROJECT_DIR$/comm_platform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nikos_freecode.py" beforeDir="false" afterPath="$PROJECT_DIR$/nikos_freecode.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +83,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "niko",
-    "last_opened_file_path": "E:/Uni/TimeSkip/Semester G/Image processing/dip_Project/Digital-Image-Processing--Final-Project-",
+    "last_opened_file_path": "E:/Uni/TimeSkip/Semester G/ML/HW3/ML_DL_Functions3_eitan.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -229,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713372204583</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="kinda done">
+      <option name="closed" value="true" />
+      <created>1713378256457</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1713378256457</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +279,8 @@
     <MESSAGE value="RaceCar.py - added methods and TODOs for later&#10;Mapping.py - added methods for track recognition and stretching&#10;main.py - added variables to handle cameras" />
     <MESSAGE value="RaceCar.py - added eitans code for car localization and other methods&#10;Mapping.py - fixed some bugs regarding segmentation&#10;main.py - added more to the play function" />
     <MESSAGE value="almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost done" />
+    <MESSAGE value="kinda done" />
+    <option name="LAST_COMMIT_MESSAGE" value="kinda done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -279,11 +288,6 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/video_car_detection.py</url>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>315</line>
-          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

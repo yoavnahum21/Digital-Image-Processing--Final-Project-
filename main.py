@@ -8,6 +8,7 @@ from big_code_version import FrameProcessor
 from RaceCar import RaceCar
 from Hand_Detection import Player
 from Mapping import Track
+import numpy as np
 
 # start game and load resources
 pygame.init()
@@ -166,6 +167,9 @@ def play() -> None:
     time.sleep(1)
     set_background(background)
     make_text_box("1", 300, (840, 450))
+
+
+    
     pygame.display.update()
     time.sleep(1)
     set_background(background)
@@ -180,8 +184,15 @@ def play() -> None:
         car.take_img()
         car.location[1], car.location[0], car.velocity, car.orientation = (
             processor.process_single_frame(car.car_img, 30, scale_x, scale_y))
-        car_surr = car.get_surrounding(track.bev_track)
-        live_screen = pygame.surfarray.make_surface(car_surr)
+        # car_surr = car.get_surrounding(track.bev_track)
+        # vec = np.array([car.location[0], car.location[1], 1])
+        # loc = track.persp_mat @ vec
+
+        print(car.location)
+        car.car_img = cv2.rotate(car.car_img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+        track_live = cv2.rotate(cv2.flip(car.car_img, 1), cv2.ROTATE_180)
+        # track_live = cv2.circle(track_live, (car.location[1], car.location[0]), 10, 255)
+        live_screen = pygame.surfarray.make_surface(track_live)
         live_screen_rect = live_screen.get_rect(center=(840, 450))
         screen.blit(live_screen, live_screen_rect)
         slope = player.sift()
@@ -197,10 +208,10 @@ def play() -> None:
         #         timer.stop()
         #         timer.start()
         #         penalty = 0
-        make_text_box("Lap Time:", 50, (200, 130))
-        make_text_box(str(timer.get_timer()), 50, (200, 180))
-        make_text_box("Speed:", 50, (200, 720))
-        make_text_box(str(car.velocity), 50, (200, 770))
+        # make_text_box("Lap Time:", 50, (200, 130))
+        # make_text_box(str(timer.get_timer()), 50, (200, 180))
+        # make_text_box("Speed:", 50, (200, 720))
+        # make_text_box(str(car.velocity), 50, (200, 770))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -219,8 +230,8 @@ def detect_map(new_track: Track):
     make_text_box("When the track and candles are visible", 40, (840, 50))
     make_text_box("press R to take a picture", 40, (840, 100))
     pygame.display.update()  # update the screen with changes in this frame
-    new_track.origin_img = cv2.imread("camera_test/test_img.png")
-    # new_track.get_track_img()
+    # new_track.origin_img = cv2.imread("camera_test/test_img.png")
+    new_track.get_track_img()
     new_track.get_bev_track()
     # new_track.get_starting_pos()
     cv2.imshow("BEV Track", new_track.bev_track)
