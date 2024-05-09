@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683e3023-4b1e-4821-af93-665d465ada35" name="Changes" comment="">
+    <list default="true" id="683e3023-4b1e-4821-af93-665d465ada35" name="Changes" comment="j">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hand_Detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hand_Detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mapping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RaceCar.py" beforeDir="false" afterPath="$PROJECT_DIR$/RaceCar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Map_Detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RaceCar.py" beforeDir="false" afterPath="$PROJECT_DIR$/RaceCar_Class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vid_Read.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/big_code_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/Car_Detection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nikos_freecode.py" beforeDir="false" afterPath="$PROJECT_DIR$/nikos_freecode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nikos_freecode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_car_detection.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +75,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.Hand_Detection.executor": "Run",
+    "Python.Map_Detection.executor": "Run",
     "Python.Mapping.executor": "Debug",
     "Python.RaceCar.executor": "Run",
     "Python.Timer.executor": "Run",
@@ -83,7 +87,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "niko",
-    "last_opened_file_path": "E:/Uni/TimeSkip/Semester G/ML/HW3/ML_DL_Functions3_eitan.py",
+    "last_opened_file_path": "E:/Uni/TimeSkip/Semester G/Image processing/dip_Project/Digital-Image-Processing--Final-Project-",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -237,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713378256457</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="done">
+      <option name="closed" value="true" />
+      <created>1713447439018</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1713447439019</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,16 +292,11 @@
     <MESSAGE value="RaceCar.py - added eitans code for car localization and other methods&#10;Mapping.py - fixed some bugs regarding segmentation&#10;main.py - added more to the play function" />
     <MESSAGE value="almost done" />
     <MESSAGE value="kinda done" />
-    <option name="LAST_COMMIT_MESSAGE" value="kinda done" />
+    <MESSAGE value="done" />
+    <option name="LAST_COMMIT_MESSAGE" value="done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/video_car_detection.py</url>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

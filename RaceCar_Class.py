@@ -1,4 +1,4 @@
-from big_code_version import FrameProcessor
+from Car_Detection import FrameProcessor
 import cv2
 import math
 import numpy as np
@@ -17,7 +17,6 @@ class RaceCar:
     def take_img(self):
         _, frame = self.car_cam.read()
         self.car_img = frame
-        #self.car_cam.release()
 
     # sets self.location to be car coordinates in (y,x)
     def get_car_pos(self, persp_mat, first_frame):
@@ -27,7 +26,9 @@ class RaceCar:
         else:
             self.new_x, self.new_y, self.found, self.mask, self.contours, self.lower_white, self.upper_white = (
                 process_frame(self.car_img, self.lower_white, self.upper_white, first_frame, self.prev_x, self.prev_y))
-            self.location = np.matmul(persp_mat, np.array([self.new_x, self.new_y]))
+            homogen_loc = np.array([self.new_x, self.new_y, 1])
+            homogen_loc = persp_mat @ homogen_loc
+            self.location = [homogen_loc[0] / homogen_loc[2], homogen_loc[1] / homogen_loc[2]]
 
     # sets self.velocity to be car velocity magnitude
     def get_velocity_n_orientation(self):
@@ -42,16 +43,8 @@ class RaceCar:
     def get_surrounding(self, img):
         window = get_window(img, self.location, 70)
         window = cv2.resize(window, (700, 700), interpolation=cv2.INTER_AREA)
-        # ang = 90 + math.degrees(math.atan2(self.orientation[1], self.orientation[0]))
-        # rot_mat = cv2.getRotationMatrix2D((350, 350), self.orientation, 1.0)
-        # return cv2.warpAffine(window, rot_mat, (700, 700), cv2.INTER_NEAREST, cv2.BORDER_CONSTANT)
-        return window
-
-    # sets self.orientation to the direction car is facing
-    # def get_orientation(self, persp_mat):
-    #     pass
-        # TODO: use get_window to get car image and detect car orientation. then use persp_mat to get
-        #  orientation in stretched image. return orientation as a 2D vector - deprecated
+        rot_mat = cv2.getRotationMatrix2D((350, 350), self.orientation, 1.0)
+        return cv2.warpAffine(window, rot_mat, (700, 700), cv2.INTER_NEAREST, cv2.BORDER_CONSTANT)
 
 
 def get_window(track_img, car_pos, size):

@@ -4,10 +4,10 @@ import pygame
 import time
 from button import Button
 from Timer import Timer
-from big_code_version import FrameProcessor
-from RaceCar import RaceCar
+from Car_Detection import FrameProcessor
+from RaceCar_Class import RaceCar
 from Hand_Detection import Player
-from Mapping import Track
+from Map_Detection import Track
 import numpy as np
 
 # start game and load resources
@@ -23,32 +23,33 @@ player = Player('', hand_cam)
 processor = FrameProcessor()
 car = RaceCar(track_cam)
 track = Track(track_cam)
-port = comm_platform.init_port()
+# port = comm_platform.init_port()
 
-def finish_mode(port):
-    comm_platform.Set_package_and_transmit('d', port)  # go right
+
+def finish_mode(com_port):
+    comm_platform.Set_package_and_transmit('d', com_port)  # go right
     time.sleep(5)
-    comm_platform.Set_package_and_transmit('r', port)  # go right
-
+    comm_platform.Set_package_and_transmit('r', com_port)  # go right
     return
 
-def fsm(grad, port):
+
+def fsm(grad, com_port):
     if grad is None:
-        comm_platform.Set_package_and_transmit('r', port)  # stop car
+        comm_platform.Set_package_and_transmit('r', com_port)  # stop car
     elif (grad <= 0.2) and (grad >= -0.2):
-        comm_platform.Set_package_and_transmit('w', port)  # go forward
+        comm_platform.Set_package_and_transmit('w', com_port)  # go forward
     elif (grad < -0.2) and (grad >= -0.5):
-        comm_platform.Set_package_and_transmit('d', port)  # go forward and right
+        comm_platform.Set_package_and_transmit('d', com_port)  # go forward and right
     elif (grad > 0.2) and (grad <= 0.5):
-        comm_platform.Set_package_and_transmit('y', port)  # go forward and left
+        comm_platform.Set_package_and_transmit('y', com_port)  # go forward and left
     elif grad > 0.5:
-        comm_platform.Set_package_and_transmit('a', port)  # go right
+        comm_platform.Set_package_and_transmit('a', com_port)  # go right
     elif grad < -0.5:
-        comm_platform.Set_package_and_transmit('d', port)  # go right
+        comm_platform.Set_package_and_transmit('d', com_port)  # go right
     else:
         return
     cv2.waitKey(50)
-    comm_platform.Set_package_and_transmit('r', port)
+    comm_platform.Set_package_and_transmit('r', com_port)
     return
 
 
@@ -71,9 +72,12 @@ def make_text_box(string: str, size: int, position: tuple):
     tex_rect = text.get_rect(center=position)
     screen.blit(text, tex_rect)
 
+def dist(point1, point2):
+    distance = ((point1[0] - point2[0])**2 + (point1[1] - point2[1])**2) ** 0.5
+    return distance
 
 # Get player max reverse, zero and max throttle hand positions
-def calibrate():
+def set_player():
     # We ask user to enter their name
     global player
     name = ''
@@ -129,8 +133,8 @@ def play() -> None:
     start_cond = False
     timer = Timer()
     best_lap = 10000
-    penalty = 0
-
+    corner_passes = np.zeros(len(track.corner_list))
+    corner_ref = np.ones(len(track.corner_list))
 
     while not start_cond:
         set_background(background)
@@ -167,9 +171,6 @@ def play() -> None:
     time.sleep(1)
     set_background(background)
     make_text_box("1", 300, (840, 450))
-
-
-    
     pygame.display.update()
     time.sleep(1)
     set_background(background)
@@ -184,34 +185,26 @@ def play() -> None:
         car.take_img()
         car.location[1], car.location[0], car.velocity, car.orientation = (
             processor.process_single_frame(car.car_img, 30, scale_x, scale_y))
-        # car_surr = car.get_surrounding(track.bev_track)
-        # vec = np.array([car.location[0], car.location[1], 1])
-        # loc = track.persp_mat @ vec
-
-        print(car.location)
-        car.car_img = cv2.rotate(car.car_img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-        track_live = cv2.rotate(cv2.flip(car.car_img, 1), cv2.ROTATE_180)
-        # track_live = cv2.circle(track_live, (car.location[1], car.location[0]), 10, 255)
-        live_screen = pygame.surfarray.make_surface(track_live)
+        car_surr = car.get_surrounding(track.bev_track)
+        live_screen = pygame.surfarray.make_surface(car_surr)
         live_screen_rect = live_screen.get_rect(center=(840, 450))
         screen.blit(live_screen, live_screen_rect)
         slope = player.sift()
         fsm(slope, port)
-        # TODO: check track limits
-        # if track_limits == True:
-        #     penalty += 0.01
         # TODO: check if lap ended
-        # if lap_end == True:
-        #     curr_time = timer.get_timer()
-        #     if curr_time + penalty < best_lap:
-        #         best_lap = curr_time
-        #         timer.stop()
-        #         timer.start()
-        #         penalty = 0
-        # make_text_box("Lap Time:", 50, (200, 130))
-        # make_text_box(str(timer.get_timer()), 50, (200, 180))
-        # make_text_box("Speed:", 50, (200, 720))
-        # make_text_box(str(car.velocity), 50, (200, 770))
+        for i, corner in enumerate(track.corner_list):
+            if dist(car.location, corner) < 20:
+                corner_passes[i] = 1
+        if corner_passes == corner_ref:
+            curr_time = timer.get_timer()
+            if curr_time < best_lap:
+                best_lap = curr_time
+                timer.stop()
+                timer.start()
+        make_text_box("Lap Time:", 50, (200, 130))
+        make_text_box(str(timer.get_timer()), 50, (200, 180))
+        make_text_box("Speed:", 50, (200, 720))
+        make_text_box(str(car.velocity), 50, (200, 770))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -230,10 +223,8 @@ def detect_map(new_track: Track):
     make_text_box("When the track and candles are visible", 40, (840, 50))
     make_text_box("press R to take a picture", 40, (840, 100))
     pygame.display.update()  # update the screen with changes in this frame
-    # new_track.origin_img = cv2.imread("camera_test/test_img.png")
     new_track.get_track_img()
     new_track.get_bev_track()
-    # new_track.get_starting_pos()
     cv2.imshow("BEV Track", new_track.bev_track)
     back_button = Button(pos=(1300, 800), text_input='Menu', font=get_font(50), base_color="#1e0b7d",
                          hovering_color='#ab0333')
@@ -316,7 +307,7 @@ def main_menu() -> None:
                 exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if calib_button.checkForInput(get_mouse_pos):
-                    calibrate()
+                    set_player()
                 if detect_button.checkForInput(get_mouse_pos):
                     detect_map(track)
                 if play_button.checkForInput(get_mouse_pos):

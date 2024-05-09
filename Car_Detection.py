@@ -144,26 +144,5 @@ class FrameProcessor:
         return values[-1]
 
 
-def main():
-    directory = 'output_frames'  # Path to the directory containing frames
-    files = sorted(os.listdir(directory))  # List and sort files to ensure correct order
-    processor = FrameProcessor()  # Create an instance of your FrameProcessor
-    frame_rate = 30  # Assumed frame rate
-
-    for file in files:
-        if file.endswith('.jpg'):  # Ensure to process only JPEG images
-            frame_path = os.path.join(directory, file)
-            frame = cv2.imread(frame_path)
-            scale_x, scale_y = 2.5 / frame.shape[1], 2 / frame.shape[0]
-            if frame is not None:
-                # Process the frame
-                avg_x, avg_y, avg_speed, avg_orientation = processor.process_single_frame(frame, frame_rate, scale_x,
-                                                                                          scale_y)
-                print(
-                    f"Processed {file}: Location: ({avg_x}, {avg_y}), Speed: {avg_speed:.2f} m/s, Orientation: {avg_orientation:.2f} degrees")
-            else:
-                print(f"Failed to load frame: {file}")
-
-
 if __name__ == "__main__":
-    main()
+    pass
